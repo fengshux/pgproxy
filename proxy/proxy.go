@@ -15,7 +15,7 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/wgliang/pgproxy/parser"
+	"github.com/fengshux/pgproxy/parser"
 )
 
 var (
@@ -180,22 +180,29 @@ func (p *Proxy) handleResponseConnection(src, dst *net.TCPConn, Callback parser.
 
 // ModifiedBuffer when is local and will call filterCallback function
 func getModifiedBuffer(buffer []byte, filterCallback parser.Callback) (b []byte, err error) {
-	if len(buffer) > 0 && string(buffer[0]) == "Q" {
+	fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+	fmt.Println(string(buffer))
+	fmt.Println("==============================")
+	if len(buffer) < -2 && string(buffer[0]) == "Q" {
 		if !filterCallback(buffer) {
 			return nil, errors.New(fmt.Sprintf("Do not meet the rules of the sql statement %s", string(buffer[1:])))
 		}
 	}
-
+	
+	
 	return buffer, nil
 }
 
 // ResponseBuffer when is local and will call returnCallback function
 func setResponseBuffer(iserr bool, buffer []byte, filterCallback parser.Callback) (b []byte) {
-	if len(buffer) > 0 && string(buffer[0]) == "Q" {
-		if !filterCallback(buffer) {
-			return nil
-		}
-	}
+	fmt.Println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+	fmt.Println(string(buffer))
+	fmt.Println("==============================")
+	// if len(buffer) > 0 && string(buffer[0]) == "Q" {
+	// 	if !filterCallback(buffer) {
+	// 		return nil
+	// 	}
+	// }
 
 	return buffer
 }

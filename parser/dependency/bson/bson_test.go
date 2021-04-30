@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wgliang/pgproxy/parser/dependency/bytes2"
+	"github.com/fengshux/pgproxy/parser/dependency/bytes2"
 )
 
 type alltypes struct {

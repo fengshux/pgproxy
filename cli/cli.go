@@ -15,8 +15,8 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"github.com/wgliang/pgproxy/parser"
-	"github.com/wgliang/pgproxy/proxy"
+	"github.com/fengshux/pgproxy/parser"
+	"github.com/fengshux/pgproxy/proxy"
 )
 
 var (
@@ -27,7 +27,7 @@ var (
 // pgproxy Main
 func Main(config interface{}, pargs interface{}) {
 	var proxyconf = flag.String("config", "pgproxy.conf", "configuration file for pgproxy")
-
+	
 	flag.Parse()
 	defer glog.Flush()
 
